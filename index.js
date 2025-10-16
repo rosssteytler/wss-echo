@@ -9,8 +9,9 @@ wss.on('connection', (ws, req) => {
   console.log('Client connected, requested protocol:', requestedProtocol);
 
   ws.on('message', (message) => {
-    console.log('Received:', message.toString());
-    ws.send(message); // echo
+    const received = message.toString()
+    console.log('Received:', received);
+    ws.send(`${received}, ${requestedProtocol}`);
   });
 
   ws.on('close', () => console.log('Client disconnected'));
