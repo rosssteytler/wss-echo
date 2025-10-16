@@ -6,12 +6,7 @@ const wss = new WebSocketServer({ port });
 
 wss.on('connection', (ws, req) => {
   const requestedProtocol = req.headers['sec-websocket-protocol'];
-  if (requestedProtocol) {
-    console.log('Client requested protocol:', requestedProtocol);
-    ws.protocol = requestedProtocol;
-  }
-
-  console.log('Client connected');
+  console.log('Client connected, requested protocol:', requestedProtocol);
 
   ws.on('message', (message) => {
     console.log('Received:', message.toString());
